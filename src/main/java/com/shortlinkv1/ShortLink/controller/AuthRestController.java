@@ -19,12 +19,12 @@ public class AuthRestController {
     }
 
     public static class RegisterRequest {
-        private String email;
-        private String password;
+        public String email;
+        public String password;
     }
 
 
-    @PostMapping("user/register")
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public void registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
         userService.register(registerRequest.email,  registerRequest.password);

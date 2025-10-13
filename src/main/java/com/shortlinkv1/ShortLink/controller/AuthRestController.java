@@ -41,8 +41,15 @@ public class AuthRestController {
              throw new IllegalArgumentException("Invalid Password");
          }
 
-         return  jwtToken.generateToken(user.getEmail());
+         return jwtToken.generateToken(user.getEmail());
 
+
+    }
+
+
+    @GetMapping("/test-permit-all")
+    public String test() {
+        return "OK";
     }
 
 

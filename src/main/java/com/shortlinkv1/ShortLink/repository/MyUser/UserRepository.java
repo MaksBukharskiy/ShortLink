@@ -1,6 +1,6 @@
-package com.shortlinkv1.ShortLink.repository;
+package com.shortlinkv1.ShortLink.repository.MyUser;
 
-import com.shortlinkv1.ShortLink.entity.User;
+import com.shortlinkv1.ShortLink.entity.UserEntity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

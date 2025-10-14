@@ -1,8 +1,8 @@
 package com.shortlinkv1.ShortLink.controller;
 
-import com.shortlinkv1.ShortLink.dto.LoginRequest;
-import com.shortlinkv1.ShortLink.dto.RegisterRequest;
-import com.shortlinkv1.ShortLink.repository.UserRepository;
+import com.shortlinkv1.ShortLink.models.dto.LoginRequest;
+import com.shortlinkv1.ShortLink.models.dto.RegisterRequest;
+import com.shortlinkv1.ShortLink.repository.MyUser.UserRepository;
 import com.shortlinkv1.ShortLink.security.JwtTokenProvider;
 import com.shortlinkv1.ShortLink.service.UserService;
 import jakarta.validation.Valid;

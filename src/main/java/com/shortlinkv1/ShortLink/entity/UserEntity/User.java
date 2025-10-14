@@ -1,4 +1,4 @@
-package com.shortlinkv1.ShortLink.entity;
+package com.shortlinkv1.ShortLink.entity.UserEntity;
 
 import jakarta.persistence.*;
 

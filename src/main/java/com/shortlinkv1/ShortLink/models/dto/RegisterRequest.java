@@ -1,4 +1,4 @@
-package com.shortlinkv1.ShortLink.dto;
+package com.shortlinkv1.ShortLink.models.dto;
 
 public class RegisterRequest {
 

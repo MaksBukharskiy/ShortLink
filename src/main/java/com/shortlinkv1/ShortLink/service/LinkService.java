@@ -17,8 +17,6 @@ public class LinkService {
     private static final String CHARACTERS = "0123456789ABCDEFGHIJ";
     private static final SecureRandom random = new SecureRandom();
 
-    private String shortCode;
-
 
     @Autowired
     public LinkService(LinkRepository linkRepository) {
@@ -36,14 +34,13 @@ public class LinkService {
 
     @Transactional
     public ShortLink createShortlink(String originalUrl, User user) {
-
+        String shortCode;
         do {
             shortCode = generateShortCode();
         } while (linkRepository.findByShortCode(shortCode).isPresent());
 
         ShortLink link = new ShortLink(originalUrl, shortCode, user);
         return linkRepository.save(link);
-
     }
 
     public ShortLink findByShortCode(String shortCode) {

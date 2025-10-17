@@ -3,11 +3,12 @@ package com.shortlinkv1.ShortLink.controller;
 import com.shortlinkv1.ShortLink.entity.ShortLink;
 import com.shortlinkv1.ShortLink.entity.UserEntity.User;
 import com.shortlinkv1.ShortLink.service.LinkService;
+import com.shortlinkv1.ShortLink.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
-import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -16,22 +17,35 @@ import java.io.IOException;
 public class ShortLinkRestController {
 
     private final LinkService linkService;
+    private final UserService userService;
 
     @Autowired
-    public ShortLinkRestController(LinkService linkService) {
+    public ShortLinkRestController(LinkService linkService, UserService userService) {
         this.linkService = linkService;
+        this.userService = userService;
     }
 
-    class CreateLinkRequest {
-        public String originalUrl;
+    static class CreateLinkRequest {
+        private String originalUrl;
+
+        public String getOriginalUrl() {
+            return originalUrl;
+        }
+
+        public void setOriginalUrl(String originalUrl) {
+            this.originalUrl = originalUrl;
+        }
     }
 
     @PostMapping("/api/links")
     @ResponseStatus(HttpStatus.CREATED)
     public ShortLink createLink(@Valid @RequestBody CreateLinkRequest request,
                                 Authentication authentication) {
-        User user = (User) authentication.getPrincipal();
-        return linkService.createShortlink(request.originalUrl, user);
+        String email = authentication.getName(); // получаем email из JWT
+        User user = userService.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return linkService.createShortlink(request.getOriginalUrl(), user);
     }
 
     @GetMapping("/{shortCode}")
@@ -44,5 +58,4 @@ public class ShortLinkRestController {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Short link not found");
         }
     }
-
 }

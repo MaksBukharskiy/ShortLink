@@ -2,6 +2,7 @@ package com.shortlinkv1.ShortLink.controller;
 
 import com.shortlinkv1.ShortLink.entity.ShortLink;
 import com.shortlinkv1.ShortLink.entity.UserEntity.User;
+import com.shortlinkv1.ShortLink.repository.ShortLink.validation.CreateLinkRequest;
 import com.shortlinkv1.ShortLink.service.LinkService;
 import com.shortlinkv1.ShortLink.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,27 +26,15 @@ public class ShortLinkRestController {
         this.userService = userService;
     }
 
-    static class CreateLinkRequest {
-        private String originalUrl;
-
-        public String getOriginalUrl() {
-            return originalUrl;
-        }
-
-        public void setOriginalUrl(String originalUrl) {
-            this.originalUrl = originalUrl;
-        }
-    }
-
     @PostMapping("/api/links")
     @ResponseStatus(HttpStatus.CREATED)
     public ShortLink createLink(@Valid @RequestBody CreateLinkRequest request,
                                 Authentication authentication) {
-        String email = authentication.getName(); // получаем email из JWT
+        String email = authentication.getName();
         User user = userService.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        return linkService.createShortlink(request.getOriginalUrl(), user);
+        return linkService.createShortlink(request.originalUrl(), user);
     }
 
     @GetMapping("/{shortCode}")

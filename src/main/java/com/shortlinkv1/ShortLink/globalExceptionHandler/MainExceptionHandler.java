@@ -1,7 +1,6 @@
 package com.shortlinkv1.ShortLink.globalExceptionHandler;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestControllerAdvice
-public class ExceptionHandler1 {
+public class MainExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

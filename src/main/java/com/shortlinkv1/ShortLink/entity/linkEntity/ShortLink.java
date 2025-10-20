@@ -1,6 +1,6 @@
 package com.shortlinkv1.ShortLink.entity;
 
-import com.shortlinkv1.ShortLink.entity.UserEntity.User;
+import com.shortlinkv1.ShortLink.entity.userEntity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

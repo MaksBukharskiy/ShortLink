@@ -1,10 +1,10 @@
-package com.shortlinkv1.ShortLink.controller;
+package com.shortlinkv1.ShortLink.controller.authController;
 
-import com.shortlinkv1.ShortLink.models.dto.LoginRequest;
-import com.shortlinkv1.ShortLink.models.dto.RegisterRequest;
+import com.shortlinkv1.ShortLink.models.dto.loginModel.LoginRequest;
+import com.shortlinkv1.ShortLink.models.dto.registerModel.RegisterRequest;
 import com.shortlinkv1.ShortLink.repository.MyUser.UserRepository;
 import com.shortlinkv1.ShortLink.security.JwtTokenProvider;
-import com.shortlinkv1.ShortLink.service.UserService;
+import com.shortlinkv1.ShortLink.service.user.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

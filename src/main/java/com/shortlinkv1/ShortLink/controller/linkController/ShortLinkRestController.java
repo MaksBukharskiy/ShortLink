@@ -1,10 +1,10 @@
-package com.shortlinkv1.ShortLink.controller;
+package com.shortlinkv1.ShortLink.controller.linkController;
 
 import com.shortlinkv1.ShortLink.entity.ShortLink;
-import com.shortlinkv1.ShortLink.entity.UserEntity.User;
+import com.shortlinkv1.ShortLink.entity.userEntity.User;
 import com.shortlinkv1.ShortLink.repository.ShortLink.validation.CreateLinkRequest;
-import com.shortlinkv1.ShortLink.service.LinkService;
-import com.shortlinkv1.ShortLink.service.UserService;
+import com.shortlinkv1.ShortLink.service.link.LinkService;
+import com.shortlinkv1.ShortLink.service.user.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

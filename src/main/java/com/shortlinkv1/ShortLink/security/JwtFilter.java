@@ -1,6 +1,6 @@
 package com.shortlinkv1.ShortLink.security;
 
-import com.shortlinkv1.ShortLink.service.UserService;
+import com.shortlinkv1.ShortLink.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +14,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collections;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {

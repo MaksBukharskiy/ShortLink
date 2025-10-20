@@ -1,6 +1,6 @@
-package com.shortlinkv1.ShortLink.service;
+package com.shortlinkv1.ShortLink.service.user;
 
-import com.shortlinkv1.ShortLink.entity.UserEntity.User;
+import com.shortlinkv1.ShortLink.entity.userEntity.User;
 import com.shortlinkv1.ShortLink.repository.MyUser.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

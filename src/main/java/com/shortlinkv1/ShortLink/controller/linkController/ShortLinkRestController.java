@@ -42,6 +42,8 @@ public class ShortLinkRestController {
                                    HttpServletResponse response) throws IOException {
         ShortLink link = linkService.findByShortCode(shortCode);
         if (link != null) {
+            link.setClickLinkCount(link.getClickLinkCount() + 1);
+            linkService.update(link);
             response.sendRedirect(link.getOriginalUrl());
         } else {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Short link not found");

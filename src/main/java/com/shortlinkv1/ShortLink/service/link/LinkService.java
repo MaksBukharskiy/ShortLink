@@ -43,6 +43,11 @@ public class LinkService {
         return linkRepository.save(link);
     }
 
+    @Transactional
+    public ShortLink update(ShortLink link) {
+        return linkRepository.save(link);
+    }
+
     public ShortLink findByShortCode(String shortCode) {
         return linkRepository.findByShortCode(shortCode).
                 orElse(null);

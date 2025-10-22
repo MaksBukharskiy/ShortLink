@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
+import java.util.List;
 
 @Service
 public class LinkService {
@@ -51,6 +52,10 @@ public class LinkService {
     public ShortLink findByShortCode(String shortCode) {
         return linkRepository.findByShortCode(shortCode).
                 orElse(null);
+    }
+
+    public List<ShortLink> findByUser(User user) {
+        return linkRepository.findByUser(user);
     }
 
 }

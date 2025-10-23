@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class LinkService {
@@ -17,6 +19,35 @@ public class LinkService {
     private static final int CODE_LENGTH = 8;
     private static final String CHARACTERS = "0123456789ABCDEFGHIJ";
     private static final SecureRandom random = new SecureRandom();
+
+    private final ConcurrentHashMap<String, Integer> linkLimitBank = new ConcurrentHashMap<>();
+
+
+    private String getHourKey (String userId) {
+        LocalDateTime now = LocalDateTime.now();
+
+        return userId + "_" + now.getYear() + "-" +
+                now.getMonthValue() + "-" +
+                now.getDayOfMonth() + "T" +
+                now.getHour();
+    }
+
+
+    private Boolean isAllowedToCreateLink(String userId){
+        String hourKey = getHourKey(userId);
+
+        return linkLimitBank.compute(hourKey, (key, count) -> {
+
+            if (count == null) {
+                return 1;
+            }
+            if (count >= 10) {
+                return count;
+            }
+
+            return count + 1;
+        }) <=10;
+    }
 
 
     @Autowired
@@ -35,6 +66,11 @@ public class LinkService {
 
     @Transactional
     public ShortLink createShortlink(String originalUrl, User user) {
+
+        if (!isAllowedToCreateLink(user.getId().toString())) {
+            throw new RuntimeException("Too many requests: maximum 10 links per hour");
+        }
+
         String shortCode;
         do {
             shortCode = generateShortCode();

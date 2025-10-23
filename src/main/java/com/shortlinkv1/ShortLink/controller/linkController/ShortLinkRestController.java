@@ -45,7 +45,6 @@ public class ShortLinkRestController {
                                    HttpServletResponse response) throws IOException {
         ShortLink link = linkService.findByShortCode(shortCode);
         if (link != null) {
-            // ✅ Исправлено: clickCount вместо clickLinkCount
             link.setClickLinkCount(link.getClickLinkCount() + 1);
             linkService.update(link);
             log.info("Redirecting from /{} to {}", shortCode, link.getOriginalUrl());

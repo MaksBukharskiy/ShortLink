@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: ShortLink
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/shortlink
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  main:
+    allow-circular-references: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+    com:
+      shortlinkv1:
+        ShortLink: DEBUG
+
+jwt:
+  secret: k3X7Z9p2q8R5v1W7s4T6u9Y3w7V5x2A8z6C4d7F9g1H5j3K7l0M5n8P2q4R7t6U9w0X2y4Z6a8B3c5D7e9F1g3H5i7J9k1L4m6N8o0P2q4R7t6U9w0X2y4Z6a8B3c5D7e9F1g3H5i7J9k1L4m6N8o0P2q4R7t6U9w0X2y4Z
+  expiration: 86400

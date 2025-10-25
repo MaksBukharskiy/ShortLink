@@ -8,6 +8,7 @@ import com.shortlinkv1.Backend.service.user.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -37,7 +38,21 @@ public class ShortLinkRestController {
         User user = userService.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        return linkService.createShortlink(request.originalUrl(), user);
+        MDC.put("userId", user.getId().toString());
+        MDC.put("email", email);
+
+        try {
+            log.info("\nCreating short link for URL: {}\n", request.originalUrl());
+
+            ShortLink link = linkService.createShortlink(request.originalUrl(), user);
+
+            log.info("\nShort link created: /{} -> {}, clickCount={}\n",
+                    link.getShortCode(), link.getOriginalUrl(), link.getClickLinkCount());
+
+            return link;
+        } finally {
+            MDC.clear();
+        }
     }
 
     @GetMapping("/{shortCode}")
@@ -54,6 +69,7 @@ public class ShortLinkRestController {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Short link not found");
         }
     }
+
 
     @GetMapping("/api/links/statistics")
     public List<ShortLink> getUserLinks(Authentication authentication) {

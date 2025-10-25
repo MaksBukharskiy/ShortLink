@@ -17,8 +17,8 @@ Perfect for learning Spring Security, JWT, input validation, and REST API design
 - [x] URL validation: only `http://` or `https://`
 - [x] Protection against XSS and dangerous schemes (`javascript:`, ``)
 - [x] Global error handling
-- [ ] Click statistics *(in progress)*
-- [ ] Rate limiting *(in progress)*
+- [x] Click statistics
+- [X] Rate limiting
 
 ---
 

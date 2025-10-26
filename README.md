@@ -32,19 +32,20 @@ Perfect for learning Spring Security, JWT, input validation, and REST API design
 
 ---
 
-## 🛠 Technologies
+### 🛠️ Tech Stack
 
-| Technology | Purpose |
-|----------|--------|
-| Java 17 | Programming language |
-| Spring Boot 3 | Application framework |
-| Spring Security | Authentication & authorization |
-| Spring Data JPA | Database interaction |
-| PostgreSQL | Persistent storage |
-| JWT | Stateless authentication |
-| Hibernate | ORM |
-| Gradle | Build tool |
-| Postman | API testing |
+| Category               | Technologies & Tools                                                                 |
+|------------------------|---------------------------------------------------------------------------------------|
+| **Language**           | Java 17                                                                               |
+| **Framework**          | Spring Boot 3.5.6, Spring Web, Spring Validation, Spring Security                     |
+| **ORM / Data Access**  | Spring Data JPA, Hibernate                                                            |
+| **Database**           | PostgreSQL 15                                                                         |
+| **Application Server** | Spring Boot                                                   |
+| **Build Tool**         | Gradle                                                                                |
+| **IDE**                | IntelliJ IDEA 2025                                                                    |
+| **Version Control**    | Git                                                                                   |
+| **Testing**            | JUnit 5, Mockito, Spring Test                                                 |
+| **Additional Tools**   | REST API, Postman, Lombok, Bean Validation API, HikariCP, Java Collections             |
 
 ---
 

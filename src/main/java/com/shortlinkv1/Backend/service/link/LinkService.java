@@ -41,12 +41,12 @@ public class LinkService {
             if (count == null) {
                 return 1;
             }
-            if (count >= 10) {
+            if (count >= 5) {
                 return count;
             }
 
             return count + 1;
-        }) <=10;
+        }) <=5;
     }
 
 

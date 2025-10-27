@@ -3,13 +3,10 @@ package com.shortlinkv1.ShortLink.MainTest.UserService;
 import com.shortlinkv1.Backend.entity.userEntity.User;
 import com.shortlinkv1.Backend.repository.MyUser.UserRepository;
 import com.shortlinkv1.Backend.service.user.UserService;
-import jakarta.validation.constraints.NotNull;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

@@ -1,4 +1,4 @@
-package com.shortlinkv1.ShortLink.MainTest;
+package com.shortlinkv1.ShortLink;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

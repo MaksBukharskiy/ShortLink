@@ -1,4 +1,4 @@
-package com.shortlinkv1.Backend.globalExceptionHandler;
+package com.shortlinkv1.Backend.exceptionHandler.globalExceptionHandler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;

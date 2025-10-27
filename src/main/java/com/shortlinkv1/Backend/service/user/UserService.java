@@ -32,9 +32,10 @@ public class UserService implements UserDetailsService {
         }
 
         String encodedPassword = passwordEncoder.encode(password);
-
         User user = new User(email, encodedPassword);
-        return userRepository.save(user);
+
+        User savedUser = userRepository.save(user);
+        return savedUser;
 
     }
 

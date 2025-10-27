@@ -1,13 +1,16 @@
 package com.shortlinkv1.Backend.controller.authController;
 
+import com.shortlinkv1.Backend.entity.userEntity.User;
 import com.shortlinkv1.Backend.models.dto.loginModel.LoginRequest;
 import com.shortlinkv1.Backend.models.dto.registerModel.RegisterRequest;
+import com.shortlinkv1.Backend.models.dto.tokenModel.JwtResponse;
 import com.shortlinkv1.Backend.repository.MyUser.UserRepository;
 import com.shortlinkv1.Backend.security.JwtTokenProvider;
 import com.shortlinkv1.Backend.service.user.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,8 +28,10 @@ public class AuthRestController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
-        userService.register(registerRequest.email, registerRequest.password);
+    public ResponseEntity<JwtResponse> registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
+        User user = userService.register(registerRequest.getEmail(), registerRequest.getPassword());
+        String token = jwtToken.generateToken(user.getEmail());
+        return ResponseEntity.status(HttpStatus.CREATED).body(new JwtResponse(token));
     }
 
 

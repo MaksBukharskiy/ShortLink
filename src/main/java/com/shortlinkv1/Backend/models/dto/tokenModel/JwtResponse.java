@@ -1,4 +1,4 @@
-package com.shortlinkv1.Backend.security.token;
+package com.shortlinkv1.Backend.models.dto.tokenModel;
 
-public record jwtResponse(String token){
+public record JwtResponse(String token){
 }

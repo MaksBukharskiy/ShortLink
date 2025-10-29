@@ -13,11 +13,13 @@ Perfect for learning Spring Security, JWT, input validation, and REST API design
 
 - [x] User registration and login with JWT
 - [x] Create short links (`/api/links`)
+- [x] Create test API request(`/message/test/test-permit-all`) 
 - [x] Redirect via short code (e.g., `/r/A1B2C3D4`)
 - [x] URL validation: only `http://` or `https://`
 - [x] Protection against XSS and dangerous schemes (`javascript:`, ``)
 - [x] Global error handling
 - [x] Click statistics
+- [x] Service, Security, API testing 
 - [X] Rate limiting
 
 ---
@@ -29,6 +31,7 @@ Perfect for learning Spring Security, JWT, input validation, and REST API design
 - Token passed in header: `Authorization: Bearer <token>`
 - URL validation via `@Pattern` — prevents injection attacks
 - All endpoints secured except `/api/auth/**`
+- All important requests, services (are tested, by JUnit, Mockito, MockitoMvc)
 
 ---
 
@@ -43,8 +46,8 @@ Perfect for learning Spring Security, JWT, input validation, and REST API design
 | **Application Server** | Spring Boot                                                   |
 | **Build Tool**         | Gradle                                                                                |
 | **IDE**                | IntelliJ IDEA 2025                                                                    |
-| **Version Control**    | Git                                                                                   |
-| **Testing**            | JUnit 5, Mockito, Spring Test                                                 |
+| **Version Control**    | Git, Warp(SSH client)                                     |
+| **Testing**            | JUnit 5, Mockito, MockitoMvc, Spring Test                                                 |
 | **Additional Tools**   | REST API, Postman, Lombok, Bean Validation API, HikariCP, Java Collections             |
 
 ---

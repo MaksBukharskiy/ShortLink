@@ -18,6 +18,7 @@ public class SecurityConfig {
                 .sessionManagement().disable()
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/message/test/**").permitAll()
                         .requestMatchers("/api/links").authenticated() // только создание — требует токена
                         .requestMatchers("/{shortCode}").permitAll()   // ← разрешаем анонимный доступ
                         .requestMatchers("/r/{shortCode}").permitAll() // ← или если используешь /r/

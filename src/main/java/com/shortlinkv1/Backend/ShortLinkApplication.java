@@ -3,7 +3,7 @@ package com.shortlinkv1.Backend;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.shortlinkv1")
 public class ShortLinkApplication {
 
 	public static void main(String[] args) {

@@ -52,10 +52,4 @@ public class AuthRestController {
     }
 
 
-    @GetMapping("/test-permit-all")
-    public String test() {
-        return "OK";
-    }
-
-
 }

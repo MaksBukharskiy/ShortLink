@@ -68,7 +68,7 @@ public class LinkService {
     public ShortLink createShortlink(String originalUrl, User user) {
 
         if (!isAllowedToCreateLink(user.getId().toString())) {
-            throw new RuntimeException("Too many requests: maximum 10 links per hour");
+            throw new RuntimeException("Too many requests: maximum 5 links per hour");
         }
 
         String shortCode;

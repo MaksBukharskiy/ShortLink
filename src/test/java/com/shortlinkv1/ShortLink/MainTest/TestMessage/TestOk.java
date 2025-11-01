@@ -26,6 +26,7 @@ public class TestOk {
     public void testPermitAll_ShouldReturn_OK() throws Exception{
 
         mockMvc.perform(get("/message/test/test-permit-all"))
+
                 .andExpect(status().isOk())
                 .andExpect(content().string("OK"));
 

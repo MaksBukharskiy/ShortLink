@@ -22,6 +22,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/links").authenticated()
                         .requestMatchers("/{shortCode}").permitAll()
                         .requestMatchers("/r/{shortCode}").permitAll()
+                        .requestMatchers("/api/qr/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);

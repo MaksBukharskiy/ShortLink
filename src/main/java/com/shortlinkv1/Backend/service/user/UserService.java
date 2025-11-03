@@ -1,7 +1,9 @@
 package com.shortlinkv1.Backend.service.user;
 
 import com.shortlinkv1.Backend.entity.userEntity.User;
+import com.shortlinkv1.Backend.models.dto.themeEnumModel.Theme;
 import com.shortlinkv1.Backend.repository.MyUser.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +24,18 @@ public class UserService implements UserDetailsService {
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    public User updateTheme(Long id, String themeString){
+
+        Theme theme = Theme.valueOf(themeString.toUpperCase());
+
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        user.setUserTheme(theme);
+        return userRepository.save(user);
+
     }
     
     @Transactional

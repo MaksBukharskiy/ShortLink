@@ -1,5 +1,6 @@
 package com.shortlinkv1.Backend.entity.userEntity;
 
+import com.shortlinkv1.Backend.models.dto.themeEnumModel.Theme;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -21,6 +22,10 @@ public class User {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "theme")
+    private Theme userTheme = Theme.Light;
+
 
     public User() {
         this.createdAt = LocalDateTime.now();
@@ -30,6 +35,14 @@ public class User {
         this();
         this.email = email;
         this.passwordHash = passwordHash;
+    }
+
+    public Theme getUserTheme() {
+        return userTheme;
+    }
+
+    public void setUserTheme(Theme userTheme) {
+        this.userTheme = userTheme;
     }
 
 

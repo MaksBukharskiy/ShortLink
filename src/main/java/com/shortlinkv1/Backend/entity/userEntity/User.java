@@ -24,7 +24,7 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "theme")
-    private Theme userTheme = Theme.Light;
+    private Theme userTheme = Theme.Dark;
 
 
     public User() {

@@ -27,20 +27,20 @@ public class QrCodeRestController {
 
     @GetMapping("/{code}")
     public ResponseEntity<byte[]> getQrCode(@PathVariable String code){
-        System.out.println("🔍 Запрос на QR для кода: " + code);
+        System.out.println("🔍 QR Request: " + code);
 
         Optional<ShortLink> linkOptional = linkRepository.findByShortCode(code);
         if(linkOptional.isEmpty()){
-            System.out.println("❌ Ссылка не найдена");
+            System.out.println("❌ Link is not found");
             return ResponseEntity.notFound().build();
         }
 
         try {
             String redirectUrl = "http://localhost:8080/s/" + code;
-            System.out.println("✅ Генерируем QR для: " + redirectUrl);
+            System.out.println("✅ Generating QR Code for: " + redirectUrl);
 
             byte[] qrImage = qrCodeService.generateQrCode(redirectUrl, 300, 300);
-            System.out.println("✅ Изображение сгенерировано, размер: " + qrImage.length + " байт");
+            System.out.println("✅ Image is generated, size: " + qrImage.length + " байт");
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.IMAGE_PNG);
@@ -48,7 +48,7 @@ public class QrCodeRestController {
 
             return new ResponseEntity<>(qrImage, headers, HttpStatus.OK);
         } catch (Exception e) {
-            System.out.println("❌ Ошибка: " + e.getMessage());
+            System.out.println("❌Error: " + e.getMessage());
             e.printStackTrace();
             return ResponseEntity.status(500).body(null);
         }

@@ -22,8 +22,9 @@ Perfect for learning Spring Security, JWT, input validation, and REST API design
 - [x] Service, Security, API testing (JUnit, Mockito, MockMvc)
 - [x] Rate limiting
 - [x] QR code generation for short links (`/api/qr/{code}`)
+- [] Theme Setting and auto Theme on (`api/user/theme`, `api/user/me`)
 
----
+---    
 
 ## 🔐 Security
 

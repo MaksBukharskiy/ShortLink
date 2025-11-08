@@ -26,16 +26,30 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User updateTheme(Long id, String themeString){
+    public User updateTheme(Long userId, String themeString) {
+        if (userId == null) {
+            throw new IllegalArgumentException("User ID must not be null");
+        }
+        if (themeString == null || themeString.trim().isEmpty()) {
+            throw new IllegalArgumentException("Theme must not be null or empty");
+        }
 
-        Theme theme = Theme.valueOf(themeString.toUpperCase());
+        String upperTheme = themeString.trim().toUpperCase();
 
-        User user = userRepository.findById(id)
+        Theme theme;
+        if ("LIGHT".equals(upperTheme)) {
+            theme = Theme.Light;
+        } else if ("DARK".equals(upperTheme)) {
+            theme = Theme.Dark;
+        } else {
+            throw new IllegalArgumentException("Invalid theme: " + themeString);
+        }
+
+        User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
         user.setUserTheme(theme);
         return userRepository.save(user);
-
     }
     
     @Transactional

@@ -1,21 +1,29 @@
 package com.shortlinkv1.Backend.service.link;
 
 import com.shortlinkv1.Backend.entity.linkEntity.ShortLink;
+import com.shortlinkv1.Backend.entity.tagEntity.Tag;
 import com.shortlinkv1.Backend.entity.userEntity.User;
 import com.shortlinkv1.Backend.repository.ShortLink.LinkRepository;
+import com.shortlinkv1.Backend.repository.ShortLink.validation.CreateLinkRequest;
+import com.shortlinkv1.Backend.repository.Tag.TagRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
+@Transactional
 public class LinkService {
 
     private final LinkRepository linkRepository;
+    private final TagRepository tagRepository;
+
     private static final int CODE_LENGTH = 8;
     private static final String CHARACTERS = "0123456789ABCDEFGHIJ";
     private static final SecureRandom random = new SecureRandom();
@@ -51,9 +59,35 @@ public class LinkService {
 
 
     @Autowired
-    public LinkService(LinkRepository linkRepository) {
+    public LinkService(LinkRepository linkRepository, TagRepository tagRepository) {
         this.linkRepository = linkRepository;
+        this.tagRepository = tagRepository;
     }
+
+
+    public void assignTagsToLink(ShortLink link, List<String> tagNames) {
+
+        Set<Tag> tags = new HashSet<>();
+
+        if(tagNames != null) {
+            for(String tagName : tagNames) {
+
+                Tag tag = tagRepository.findByName(tagName)
+                        .orElseGet(() -> {
+                            Tag tagEntity = new Tag();
+                            Tag newTag = tagRepository.save(tagEntity);
+
+                            return newTag;
+                        });
+
+                tags.add(tag);
+            }
+        }
+
+        link.setTags(tags);
+
+    }
+
 
     private String generateShortCode() {
         StringBuilder sb = new StringBuilder(CODE_LENGTH);
@@ -65,7 +99,7 @@ public class LinkService {
     }
 
     @Transactional
-    public ShortLink createShortlink(String originalUrl, User user) {
+    public ShortLink createShortlink(CreateLinkRequest request, User user) {
 
         if (!isAllowedToCreateLink(user.getId().toString())) {
             throw new RuntimeException("Too many requests: maximum 5 links per hour");
@@ -76,7 +110,10 @@ public class LinkService {
             shortCode = generateShortCode();
         } while (linkRepository.findByShortCode(shortCode).isPresent());
 
-        ShortLink link = new ShortLink(originalUrl, shortCode, user);
+        ShortLink link = new ShortLink(request.originalUrl(), shortCode, user);
+
+        assignTagsToLink(link, request.tags());
+
         return linkRepository.save(link);
     }
 

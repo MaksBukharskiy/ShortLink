@@ -3,6 +3,7 @@ package com.shortlinkv1.Backend.controller.linkController;
 import com.shortlinkv1.Backend.entity.linkEntity.ShortLink;
 import com.shortlinkv1.Backend.entity.userEntity.User;
 import com.shortlinkv1.Backend.repository.ShortLink.validation.CreateLinkRequest;
+import com.shortlinkv1.Backend.response.appResponse.LinkResponse;
 import com.shortlinkv1.Backend.service.link.LinkService;
 import com.shortlinkv1.Backend.service.user.UserService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,8 +34,8 @@ public class ShortLinkRestController {
 
     @PostMapping("/api/links")
     @ResponseStatus(HttpStatus.CREATED)
-    public ShortLink createLink(@Valid @RequestBody CreateLinkRequest request,
-                                Authentication authentication) {
+    public ResponseEntity<LinkResponse> createLink(@Valid @RequestBody CreateLinkRequest request,
+                                                   Authentication authentication) {
         String email = authentication.getName();
         User user = userService.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -44,12 +46,14 @@ public class ShortLinkRestController {
         try {
             log.info("\nCreating short link for URL: {}\n", request.originalUrl());
 
-            ShortLink link = linkService.createShortlink(request.originalUrl(), user);
+            ShortLink link = linkService.createShortlink(request, user);
 
             log.info("\nShort link created: /{} -> {}, clickCount={}\n",
-                    link.getShortCode(), link.getOriginalUrl(), link.getClickLinkCount());
+                    link.getShortCode(),
+                    link.getOriginalUrl(),
+                    link.getTags().stream().map(t -> t.getName()).toList());
 
-            return link;
+            return ResponseEntity.status(HttpStatus.CREATED).body(LinkResponse.from(link));
         } finally {
             MDC.clear();
         }

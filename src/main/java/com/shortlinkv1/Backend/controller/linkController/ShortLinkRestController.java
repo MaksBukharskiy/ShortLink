@@ -2,7 +2,7 @@ package com.shortlinkv1.Backend.controller.linkController;
 
 import com.shortlinkv1.Backend.entity.linkEntity.ShortLink;
 import com.shortlinkv1.Backend.entity.userEntity.User;
-import com.shortlinkv1.Backend.repository.ShortLink.validation.CreateLinkRequest;
+import com.shortlinkv1.Backend.repository.validation.CreateLinkRequest;
 import com.shortlinkv1.Backend.response.appResponse.LinkResponse;
 import com.shortlinkv1.Backend.service.link.LinkService;
 import com.shortlinkv1.Backend.service.user.UserService;

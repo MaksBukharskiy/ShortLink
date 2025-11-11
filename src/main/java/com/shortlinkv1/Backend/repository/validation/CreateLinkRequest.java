@@ -1,4 +1,4 @@
-package com.shortlinkv1.Backend.repository.ShortLink.validation;
+package com.shortlinkv1.Backend.repository.validation;
 
 
 import jakarta.validation.constraints.NotBlank;

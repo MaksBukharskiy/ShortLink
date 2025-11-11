@@ -5,7 +5,8 @@ A production-ready URL shortening service built with Spring Boot and PostgreSQL.
 A simple and secure link shortening service built with **Java + Spring Boot**.  
 Perfect for learning Spring Security, JWT, input validation, and REST API design.
 
-🎯 **Goal**: Build a production-ready URL shortener focused on security and clean code.
+## 🎯 **Goal** 
+- <h3> Build a production-ready URL shortener focused on security and clean code.
 
 ---
 
@@ -24,20 +25,21 @@ Perfect for learning Spring Security, JWT, input validation, and REST API design
 - [x] QR code generation for short links (`/api/qr/{code}`)
 - [x] Theme Setting and auto Theme on (`api/user/theme`, `api/user/me`)
 - [x] Tag links for categorization (`work`, `meeting`, etc.)(`/api/links`)
+- [x] All major endpoints are secured with tests
 
 ---    
 
 ## 🔐 Security
 
 - Passwords are hashed using `BCryptPasswordEncoder`
-- Authentication via JWT (`HS512`, 512+ bits)
+- Authentication via JWT (`HS512`, `512+` bits)
 - Token passed in header: `Authorization: Bearer <token>`
 - URL validation via `@Pattern` — prevents injection attacks
+- Comprehensive testing of services and API logic using JUnit, Mockito, and MockMvc
 - All endpoints secured except:
-    - `/api/auth/**`
-    - `/s/{code}`
-    - `/api/qr/{code}`
-- Comprehensive testing of services, security, and API logic using JUnit, Mockito, and MockMvc
+   - `/api/auth/**`
+  - `/s/{code}`
+  - `/api/qr/{code}`
 
 ---
 

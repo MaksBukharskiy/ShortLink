@@ -4,7 +4,7 @@ import com.shortlinkv1.Backend.entity.linkEntity.ShortLink;
 import com.shortlinkv1.Backend.entity.tagEntity.Tag;
 import com.shortlinkv1.Backend.entity.userEntity.User;
 import com.shortlinkv1.Backend.repository.ShortLink.LinkRepository;
-import com.shortlinkv1.Backend.repository.ShortLink.validation.CreateLinkRequest;
+import com.shortlinkv1.Backend.repository.validation.CreateLinkRequest;
 import com.shortlinkv1.Backend.repository.Tag.TagRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,10 +74,9 @@ public class LinkService {
 
                 Tag tag = tagRepository.findByName(tagName)
                         .orElseGet(() -> {
-                            Tag tagEntity = new Tag();
-                            Tag newTag = tagRepository.save(tagEntity);
-
-                            return newTag;
+                            Tag newTag = new Tag();
+                            newTag.setName(tagName);
+                            return tagRepository.save(newTag);
                         });
 
                 tags.add(tag);

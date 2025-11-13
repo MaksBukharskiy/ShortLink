@@ -25,6 +25,9 @@ public class ShortLink {
     @Column(name = "original_url", nullable = false, length = 2048)
     private String originalUrl;
 
+    @Column(name = "expires_at")
+    private LocalDateTime expiresAt;
+
     @Column(name = "short_code", unique = true, nullable = false, length = 50)
     private String shortCode;
 
@@ -60,6 +63,7 @@ public class ShortLink {
         this.originalUrl = originalUrl;
         this.shortCode = shortCode;
         this.user = user;
-        this.createdAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now()
+        ;
     }
 }

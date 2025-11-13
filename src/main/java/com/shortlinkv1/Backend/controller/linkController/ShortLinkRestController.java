@@ -17,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -60,17 +61,22 @@ public class ShortLinkRestController {
     }
 
     @GetMapping("/{shortCode}")
-    public void redirectToOriginal(@PathVariable String shortCode,
-                                   HttpServletResponse response) throws IOException {
+    public void redirectToOriginal(@PathVariable String shortCode, HttpServletResponse response) throws IOException {
         ShortLink link = linkService.findByShortCode(shortCode);
-        if (link != null) {
+
+        if (link == null || (link.getExpiresAt() != null && link.getExpiresAt().isBefore(LocalDateTime.now()))) {
+
+            log.warn("Short link expired or not found: {}", shortCode);
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Short link expired or not found");
+
+        } else {
+
             link.setClickLinkCount(link.getClickLinkCount() + 1);
             linkService.update(link);
             log.info("Redirecting from /{} to {}", shortCode, link.getOriginalUrl());
+
             response.sendRedirect(link.getOriginalUrl());
-        } else {
-            log.warn("Short link not found: {}", shortCode);
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Short link not found");
+
         }
     }
 

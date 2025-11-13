@@ -111,6 +111,10 @@ public class LinkService {
 
         ShortLink link = new ShortLink(request.originalUrl(), shortCode, user);
 
+        if(request.ttlDays() != null) {
+            link.setExpiresAt(LocalDateTime.now().plusDays(request.ttlDays()));
+        }
+
         assignTagsToLink(link, request.tags());
 
         return linkRepository.save(link);

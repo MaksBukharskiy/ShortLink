@@ -18,6 +18,9 @@ public record CreateLinkRequest (
     String originalUrl,
 
     @Size(max = 10, message = "No more than 10 tags allowed")
-    List<String> tags
+    List<String> tags,
+
+    @Size(max = 15, message = "Your link validity period is expired")
+    Integer ttlDays
 
 ){}

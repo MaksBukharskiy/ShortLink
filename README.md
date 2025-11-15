@@ -17,7 +17,7 @@ Perfect for learning Spring Security, JWT, input validation, and REST API design
 - [x] Test public endpoint (`/message/test/test-permit-all`)
 - [x] Redirect via short code (e.g., `/s/A1B2C3D4`)
 - [x] URL validation: only `http://` or `https://`
-- [x] Protection against XSS and dangerous schemes (`javascript:`, ``)
+- [x] Protection against XSS and dangerous schemes (`javascript`)
 - [x] Global error handling
 - [x] Click statistics
 - [x] Service, Security, API testing (JUnit, Mockito, MockMvc)
@@ -26,6 +26,9 @@ Perfect for learning Spring Security, JWT, input validation, and REST API design
 - [x] Theme Setting and auto Theme on (`api/user/theme`, `api/user/me`)
 - [x] Tag links for categorization (`work`, `meeting`, etc.)(`/api/links`)
 - [x] All major endpoints are secured with tests
+- [X] Create tag adding, when creating link (`/api/links`)
+- [X] Imlemetl link TTL(time-to-live)
+- [X] individual endpoint, where User can view all tags have created (`/api/tags`)
 
 ---    
 

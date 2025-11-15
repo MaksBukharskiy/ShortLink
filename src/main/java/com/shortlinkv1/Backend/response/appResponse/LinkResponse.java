@@ -11,6 +11,7 @@ public record LinkResponse (
        String originalUrl,
        LocalDateTime createdAt,
        List<String> tags
+
 ){
     public static LinkResponse from(ShortLink link){
         List<String> tagNames = link.getTags().stream()

@@ -1,4 +1,4 @@
-package com.shortlinkv1.ShortLink.MainTest.TagRestController;
+package com.shortlinkv1.ShortLink.MainTest.TagRestControllerTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shortlinkv1.Backend.ShortLinkApplication;
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(classes = ShortLinkApplication.class)
 @AutoConfigureMockMvc
-public class TagController {
+public class TagControllerTest {
 
     @Autowired
     private TagRepository tagRepository;

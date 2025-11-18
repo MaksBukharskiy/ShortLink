@@ -48,7 +48,7 @@ class LinkServiceWorkingTest {
         String originalUrl = "https://example.com  ";
         List<String> listOfTags = List.of("develop", "contribute");
 
-        CreateLinkRequest request = new CreateLinkRequest(originalUrl, listOfTags);
+        CreateLinkRequest request = new CreateLinkRequest(originalUrl, listOfTags, null);
 
         Tag existingTag = new Tag("develop");
 

@@ -23,6 +23,7 @@ public class SecurityConfig {
                         .requestMatchers("/{shortCode}").permitAll()
                         .requestMatchers("/r/{shortCode}").permitAll()
                         .requestMatchers("/api/qr/**").permitAll()
+                        .requestMatchers("/api/tags/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);

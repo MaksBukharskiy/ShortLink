@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/tag")
+@RequestMapping("api/tags")
 public class TagRestController {
 
     @Autowired

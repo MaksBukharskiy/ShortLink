@@ -1,6 +1,7 @@
 package com.shortlinkv1.Backend.entity.tagEntity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Objects;
 

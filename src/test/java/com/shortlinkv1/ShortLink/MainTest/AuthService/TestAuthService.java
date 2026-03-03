@@ -6,6 +6,7 @@ import com.shortlinkv1.Backend.models.dto.registerModel.RegisterRequest;
 import com.shortlinkv1.Backend.repository.MyUser.UserRepository;
 import com.shortlinkv1.Backend.service.user.UserService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -40,6 +41,7 @@ public class TestAuthService {
 
 
     @Test
+    @DisplayName("testing register of user, should return token and create user")
     public void register_ValidUser_ShouldReturnTokenAndCreateUser() throws Exception {
         RegisterRequest request = new RegisterRequest(
                 "maksbuharskij16@gmail.com",

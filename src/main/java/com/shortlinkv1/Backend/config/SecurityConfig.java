@@ -24,6 +24,7 @@ public class SecurityConfig {
                         .requestMatchers("/r/{shortCode}").permitAll()
                         .requestMatchers("/api/qr/**").permitAll()
                         .requestMatchers("/api/tags/**").permitAll()
+                        .requestMatchers("/rabbitmq/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -8,6 +8,12 @@ spring:
     password: postgres
     driver-class-name: org.postgresql.Driver
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: 123
+    password: 123
+
   jpa:
     hibernate:
       ddl-auto: create-drop

@@ -22,4 +22,10 @@ public class Controller {
         log.info("✅✅✅Producer✅✅✅");
     }
 
+    @PostMapping("/test/fullrabbit")
+    public void sendProduserFullRabbit(@RequestParam String msg){
+        testProducer.sendMessageToQueue(msg);
+        log.info("✅✅✅Producer full Rabbit✅✅✅");
+    }
+
 }

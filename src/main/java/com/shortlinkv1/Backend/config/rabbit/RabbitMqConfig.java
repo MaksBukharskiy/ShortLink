@@ -19,7 +19,7 @@ public class RabbitMqConfig {
 
     @Bean
     public Queue queueForInfo(){
-        return new Queue("queue.for.exchange", false);
+        return new Queue("queue.for.full.rabbit", false);
     }
 
     @Bean

@@ -14,6 +14,15 @@ public class TestProducer {
 
     public void sendMessage(String message){
         rabbitTemplate.convertAndSend("test.queue", message);
-        log.info("Sent: " + message);
+        log.info("🔑 Sent: " + message);
+    }
+
+    public void sendMessageToQueue(String message){
+        rabbitTemplate.convertAndSend(
+                "user.exchange",
+                "binding.app",
+                message
+        );
+        log.info("🔑 Sent second Message using full RabbitMQ" + message);
     }
 }

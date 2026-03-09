@@ -48,18 +48,20 @@ Perfect for learning Spring Security, JWT, input validation, and REST API design
 
 ## 🛠️ Tech Stack
 
-| Category               | Technologies & Tools                                                                 |
-|------------------------|---------------------------------------------------------------------------------------|
-| **Language**           | Java 17                                                                               |
-| **Framework**          | Spring Boot 3.5.6, Spring Web, Spring Validation, Spring Security                     |
-| **ORM / Data Access**  | Spring Data JPA, Hibernate                                                            |
-| **Database**           | PostgreSQL 15                                                                         |
-| **Application Server** | Embedded Tomcat                                                                       |
-| **Build Tool**         | Gradle                                                                                |
-| **IDE**                | IntelliJ IDEA 2025                                                                    |
-| **Version Control**    | Git, Warp (SSH client)                                                                |
-| **Testing**            | JUnit 5, Mockito, MockMvc, Spring Test                                                |
-| **Additional Tools**   | REST API, Postman, Lombok, Bean Validation API, HikariCP, Java Collections, ZXing     |
+| Category              | Technologies & Tools                                                            |
+|-----------------------|---------------------------------------------------------------------------------|
+| **Language**          | Java 17                                                                         |
+| **Framework**         | Spring Boot 3.5.6, Spring Web, Spring Validation, Spring Security               |
+| **Additional Tools**  | REST API, Postman, Lombok, Bean Validation API, HikariCP, Java Collections, ZXing |
+| **Testing**           | JUnit 5, Mockito, MockMvc, Spring Test                                          |
+|**ORM / Data Access** | Spring Data JPA, Hibernate
+| **Database**          | PostgreSQL 15                                                                   |
+| **Application Server** | Embedded Tomcat                                                                 |
+| **Build Tool**        | Gradle                                                                          |
+| **IDE**               | IntelliJ IDEA 2025                                                              |
+| **Version Control**   | Git, Warp (SSH client)                                                          |
+| **DevOPS**            | RabbitMQ                                                                        |
+
 
 ---
 

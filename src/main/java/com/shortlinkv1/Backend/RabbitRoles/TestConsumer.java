@@ -12,7 +12,7 @@ public class TestConsumer {
         log.info("️️☑️ Received: " + message);
     }
 
-    @RabbitListener(queues = "queue.for.full.rabbit")
+    @RabbitListener(queues = {"queue.for.full.rabbit", "second.queue"})
     public void receiveMessageFromFullRabbitQueue(String message){
         log.info("☑️ Received second Message using full RabbitMQ: " + message);
     }
